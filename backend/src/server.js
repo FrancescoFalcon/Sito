@@ -7,9 +7,9 @@ async function start () {
   if (!config.useFakeDb) {
     try {
       await connectToDatabase()
-      console.log('MongoDB connected successfully')
+      console.log('✅ Connected to MongoDB Atlas')
     } catch (error) {
-      console.warn('MongoDB connection failed, falling back to static data:', error.message)
+      console.error('❌ MongoDB connection error:', error.message)
       config.useFakeDb = true
     }
   } else {

@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -17,6 +18,17 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use('/api', routes)
+
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '..', 'frontend', 'dist')
+
+  app.use(express.static(distPath))
+
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next()
+    res.sendFile(path.join(distPath, 'index.html'))
+  })
+}
 
 // Error handler
 // eslint-disable-next-line no-unused-vars

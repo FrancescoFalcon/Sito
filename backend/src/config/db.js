@@ -11,7 +11,6 @@ async function connectToDatabase () {
   try {
     await mongoose.connect(config.mongoUri)
     isConnected = true
-    console.log('MongoDB connection established')
 
     // Drop legacy indexes that referenced the removed email field
     try {
@@ -33,8 +32,7 @@ async function connectToDatabase () {
 
     return mongoose.connection
   } catch (error) {
-    console.error('MongoDB connection failed:', error.message)
-    throw error
+    throw new Error(`MongoDB connection failed: ${error.message}`)
   }
 }
 

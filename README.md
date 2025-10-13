@@ -19,33 +19,33 @@ Single Page Application (SPA) that lets fans explore the intricate world of **Lo
 └── README.md     # This file
 ```
 
-## Getting Started
 
-### Prerequisites
+## Come avviare il sito (istruzioni per il professore)
 
-- Node.js 20+
-- npm 10+
-- MongoDB connection string (Atlas or local)
+1. **Prerequisiti**
+	- Node.js installato
+	- MongoDB attivo (locale o Atlas; Compass serve solo per vedere i dati, non è obbligatorio)
 
-### Backend Setup
+2. **Backend**
+	- Vai in `sito/backend`
+	- Esegui `npm install` (solo la prima volta)
+		 - Imposta la variabile `MONGODB_URI` in `.env` con la stringa di connessione
+			 - Esempio locale: `MONGODB_URI=mongodb://localhost:27017/lotm`
+		 - Puoi copiare `.env.example` in `.env` e compilare i valori richiesti
+	- Esegui `npm run dev` per avviare il server API
 
-```powershell
-cd backend
-npm install
-cp .env.example .env   # or New-Item -Path .env -Value "..."
-npm run seed           # optional: populate MongoDB with sample lore
-npm run dev            # start API with nodemon
-```
+3. **Frontend**
+	- Vai in `sito/frontend`
+	- Esegui `npm install` (solo la prima volta)
+	- Esegui `npm run dev` per avviare il sito (di solito su `localhost:5173`)
 
-### Frontend Setup
+**Riassunto:**
+- MongoDB deve essere attivo
+- Backend deve essere avviato
+- Frontend deve essere avviato
+- Compass è solo per gestire i dati, non obbligatorio per il funzionamento del sito
 
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-Visit the SPA at `http://localhost:5173` (default Vite port) and ensure the backend is available at `http://localhost:3000`.
+Se vuoi vedere il sito in produzione, esegui `npm run build` in `frontend` e configura il backend per servire i file statici da `frontend/dist`.
 
 ## Features
 
