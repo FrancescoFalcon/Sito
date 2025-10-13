@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: lotm-app
+    env: node
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: cd backend && NODE_ENV=production node src/server.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: PORT
+        value: 10000

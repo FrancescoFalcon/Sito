@@ -1,3 +1,5 @@
+const path = require('path')
+const express = require('express')
 const http = require('http')
 const app = require('./app')
 const config = require('./config/env')
@@ -16,10 +18,21 @@ async function start () {
     console.warn('USE_FAKE_DB=true - the API will use static fallback data')
   }
 
+  // Serve Vue static files in production
+  if (process.env.NODE_ENV === 'production') {
+    const distPath = path.join(__dirname, '..', '..', 'frontend', 'dist')
+    app.use(express.static(distPath))
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api')) return next()
+      res.sendFile(path.join(distPath, 'index.html'))
+    })
+  }
+
+  const PORT = process.env.PORT || config.port || 3000
   const server = http.createServer(app)
-  server.listen(config.port, () => {
+  server.listen(PORT, () => {
     const mode = config.useFakeDb ? 'static data mode' : 'MongoDB mode'
-    console.log(`Lord of the Mysteries API listening at http://localhost:${config.port} (${mode})`)
+    console.log(`Lord of the Mysteries API listening at http://localhost:${PORT} (${mode})`)
   })
 }
 
