@@ -20,13 +20,15 @@ async function start () {
 
   // Serve Vue static files in production
   if (process.env.NODE_ENV === 'production') {
-    const distPath = path.join(__dirname, '../../frontend/dist')
+  // Percorso assoluto basato sulla root del progetto
+    const distPath = path.join(process.cwd(), 'frontend/dist')
+    console.log('📁 Looking for dist at:', distPath) // DEBUG
     app.use(express.static(distPath))
     app.get('*', (req, res, next) => {
       if (req.path.startsWith('/api')) return next()
       res.sendFile(path.join(distPath, 'index.html'))
     })
-  }
+}
 
   const PORT = process.env.PORT || config.port || 3000
   const server = http.createServer(app)
