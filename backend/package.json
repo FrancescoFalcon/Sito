@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "jest",
     "seed": "node src/scripts/seed.js",
-    "postinstall": "cd ../../frontend && npm install && npm run build && cp -r dist ../backend/frontend/"
+    "postinstall": "cd frontend && npm install && npm run build"
   },
   "keywords": [
     "lord-of-the-mysteries",
