@@ -26,12 +26,7 @@
         </p>
       </div>
       <div class="hero-actions">
-        <RouterLink
-          to="/personaggi"
-          class="btn btn-primary shadow-soft"
-        >
-          Inizia il viaggio
-        </RouterLink>
+        <!-- Pulsante 'Inizia il viaggio' rimosso -->
       </div>
     </div>
   </section>
