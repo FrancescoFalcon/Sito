@@ -1035,8 +1035,34 @@ onUnmounted(() => {
   min-width: auto;
 }
 
-.detail-sequence-item--god .detail-seq-name {
+detail-sequence-item--god .detail-seq-name {
   text-align: left;
+}
+
+@media (max-width: 1400px) {
+  .paths-grid--standard .path-card {
+    width: calc((100% - 9.2rem) / 7);
+  }
+
+  .paths-grid--boon .path-card {
+    width: calc((100% - 4.8rem) / 4);
+  }
+}
+
+@media (max-width: 1200px) {
+  .paths-grid--standard .path-card {
+    width: calc((100% - 8rem) / 6);
+  }
+}
+
+@media (max-width: 900px) {
+  .paths-grid--standard .path-card {
+    width: calc((100% - 6.8rem) / 5);
+  }
+
+  .paths-grid--boon .path-card {
+    width: calc((100% - 3.6rem) / 3);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1068,12 +1094,26 @@ onUnmounted(() => {
   }
 
   .paths-grid {
-    gap: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    max-height: none;
+    padding: 0.5rem 0;
   }
 
   .paths-grid--standard .path-card,
   .paths-grid--boon .path-card {
-    width: calc((100% - 2.4rem) / 4);
+    width: 100%;
+  }
+
+  .path-card {
+    flex: 1 1 auto;
+    min-width: 160px;
+    aspect-ratio: 0.75;
+  }
+
+  .path-image-container {
+    min-height: 160px;
   }
 
   .content-title {
@@ -1137,29 +1177,34 @@ onUnmounted(() => {
   }
 }
 
-@media (max-width: 1400px) {
-  .paths-grid--standard .path-card {
-    width: calc((100% - 9.2rem) / 7);
+@media (max-width: 540px) {
+  .paths-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.85rem;
   }
 
-  .paths-grid--boon .path-card {
-    width: calc((100% - 4.8rem) / 4);
+  .path-card {
+    min-width: 140px;
+    aspect-ratio: 0.8;
+  }
+
+  .path-image-container {
+    min-height: 150px;
   }
 }
 
-@media (max-width: 1200px) {
-  .paths-grid--standard .path-card {
-    width: calc((100% - 8rem) / 6);
-  }
-}
-
-@media (max-width: 900px) {
-  .paths-grid--standard .path-card {
-    width: calc((100% - 6.8rem) / 5);
+@media (max-width: 420px) {
+  .paths-grid {
+    grid-template-columns: 1fr;
   }
 
-  .paths-grid--boon .path-card {
-    width: calc((100% - 3.6rem) / 3);
+  .path-card {
+    min-width: 100%;
+    aspect-ratio: 0.9;
+  }
+
+  .path-image-container {
+    min-height: 180px;
   }
 }
 </style>

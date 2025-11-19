@@ -794,21 +794,56 @@ onUnmounted(() => {
 
 @media (max-width: 575.98px) {
   .group-header {
-    min-height: clamp(420px, 96vw, 600px);
-    align-items: flex-start;
-    gap: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-indicator {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
   }
 
   .carousel-wrapper {
-    gap: 1.5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "stage stage"
+      "prev next"
+      "meta meta";
+    gap: 1.25rem;
   }
 
   .carousel-stage {
+    grid-area: stage;
+    width: 100%;
     height: clamp(420px, 96vw, 580px);
   }
 
   .carousel-nav {
-    display: none;
+    position: static;
+    transform: none;
+    grid-row: 2;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-nav--prev {
+    grid-area: prev;
+    justify-self: end;
+  }
+
+  .carousel-nav--next {
+    grid-area: next;
+    justify-self: start;
   }
 
   .carousel-card--side {
@@ -816,12 +851,14 @@ onUnmounted(() => {
   }
 
   .carousel-card--center :deep(.character-card) {
-    width: min(90vw, 480px);
+    width: min(92vw, 500px);
   }
 
   .carousel-meta {
+    grid-area: meta;
     width: 100%;
     justify-content: center;
+    margin-top: 0.25rem;
   }
 }
 </style>

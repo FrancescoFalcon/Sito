@@ -103,10 +103,12 @@
         <div class="auth-dialog card text-light shadow-lg">
           <button
             type="button"
-            class="btn-close btn-close-white ms-auto"
+            class="auth-close-btn"
             aria-label="Close"
             @click="closeModal"
-          />
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
           <div class="card-body">
             <h5 class="card-title mb-3 text-center">
               {{ isLoginMode ? 'Sign in to the community' : 'Create an account' }}
@@ -329,11 +331,42 @@ header::after {
   backdrop-filter: blur(18px);
 }
 
-.auth-dialog .btn-close {
+.auth-close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(236, 196, 94, 0.65);
+  background: radial-gradient(circle at 30% 30%, rgba(236, 196, 94, 0.25), rgba(8, 12, 20, 0.95));
+  color: #fff4d1;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.auth-close-btn span {
+  transform: translateY(-2px);
+}
+
+.auth-close-btn:hover {
+  transform: scale(1.08);
+  border-color: rgba(236, 196, 94, 0.95);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+  background: radial-gradient(circle at 30% 30%, rgba(236, 196, 94, 0.4), rgba(8, 12, 20, 0.95));
+}
+
+.auth-close-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 2px;
 }
 
 .auth-dialog .card-body {
