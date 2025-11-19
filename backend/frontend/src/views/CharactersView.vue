@@ -836,13 +836,23 @@ onUnmounted(() => {
       "stage stage"
       "prev next"
       "meta meta";
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .carousel-stage {
     grid-area: stage;
     width: 100%;
-    height: clamp(420px, 96vw, 580px);
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+    display: flex;
+  }
+
+  .carousel-track {
+    height: auto;
+    min-height: auto;
+    padding: 0.5rem 0;
   }
 
   .carousel-nav {
