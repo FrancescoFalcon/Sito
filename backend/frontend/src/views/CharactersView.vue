@@ -794,18 +794,38 @@ onUnmounted(() => {
 
 @media (max-width: 575.98px) {
   .group-header {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
     gap: 0.6rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .category-indicator {
-    flex-shrink: 0;
     width: 12px;
     height: 12px;
+  }
+
+  .category-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.65rem;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .category-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   .carousel-wrapper {
