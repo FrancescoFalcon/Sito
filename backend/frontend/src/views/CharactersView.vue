@@ -476,10 +476,12 @@ onUnmounted(() => {
   letter-spacing: 0.08em;
 }
 
-.category-chip:hover {
-  transform: translateY(-2px);
-  background: rgba(252, 191, 73, 0.18);
-  border-color: rgba(252, 191, 73, 0.55);
+@media (hover: hover) {
+  .category-chip:hover {
+    transform: translateY(-2px);
+    background: rgba(252, 191, 73, 0.18);
+    border-color: rgba(252, 191, 73, 0.55);
+  }
 }
 
 .group-section {
@@ -735,6 +737,7 @@ onUnmounted(() => {
   color: rgba(252, 191, 73, 0.95);
   backdrop-filter: blur(12px);
   box-shadow: 0 18px 40px rgba(8, 10, 22, 0.4);
+  z-index: 10;
 }
 
 .carousel-nav:disabled {
@@ -808,12 +811,13 @@ onUnmounted(() => {
   }
 
   .category-nav {
+    width: 100%;
     flex-wrap: nowrap;
     overflow-x: auto;
     gap: 0.65rem;
     justify-content: flex-start;
     margin-bottom: 2rem;
-    padding-bottom: 0.4rem;
+    padding: 0.25rem 1rem 0.4rem 1rem;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
