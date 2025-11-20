@@ -11,24 +11,7 @@ async function connectToDatabase () {
   try {
     await mongoose.connect(config.mongoUri)
     isConnected = true
-
-    // Drop legacy indexes that referenced the removed email field
-    try {
-      const collections = await mongoose.connection.db.listCollections({ name: 'users' }).toArray()
-      if (collections.length > 0) {
-        const usersCollection = mongoose.connection.db.collection('users')
-        const indexes = await usersCollection.indexes()
-        const legacyEmailIndex = indexes.find(index => index.name === 'email_1')
-        if (legacyEmailIndex) {
-          await usersCollection.dropIndex('email_1')
-          console.log('Dropped legacy users.email_1 index')
-        }
-      }
-    } catch (indexError) {
-      if (indexError.codeName !== 'IndexNotFound') {
-        console.warn('Warning: unable to drop legacy email index:', indexError.message)
-      }
-    }
+    console.log('MongoDB connected successfully')
 
     return mongoose.connection
   } catch (error) {

@@ -16,8 +16,6 @@ export function setAuthToken (token) {
 export const fetchPaths = () => apiClient.get('/paths').then(r => r.data)
 export const fetchPath = (slug) => apiClient.get(`/paths/${slug}`).then(r => r.data)
 export const fetchCharacters = () => apiClient.get('/characters').then(r => r.data)
-export const fetchNotes = () => apiClient.get('/notes').then(r => r.data)
-export const createNote = (payload) => apiClient.post('/notes', payload).then(r => r.data)
 export const fetchThreads = () => apiClient.get('/community/threads').then(r => r.data)
 export const createThread = (payload) => apiClient.post('/community/threads', payload).then(r => r.data)
 export const replyToThread = (slug, payload) => apiClient.post(`/community/threads/${slug}/replies`, payload).then(r => r.data)
