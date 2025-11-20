@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const config = require('../config/env')
-const { fallbackUsers } = require('../services/fakeDatabase')
 
 function normaliseId (value) {
   if (!value) return null
@@ -21,15 +20,6 @@ async function authenticate (req, res, next) {
   try {
     const payload = jwt.verify(token, config.jwtSecret)
     let user
-
-    if (config.useFakeDb) {
-      user = fallbackUsers.find(item => normaliseId(item._id) === normaliseId(payload.sub))
-      if (!user) {
-        return res.status(401).json({ message: 'Invalid token' })
-      }
-      req.user = user
-      return next()
-    }
 
     user = await User.findById(payload.sub)
     if (!user) {

@@ -1,9 +1,7 @@
-const { randomUUID } = require('crypto')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const config = require('../config/env')
-const { fallbackUsers } = require('../services/fakeDatabase')
 
 function normaliseUser (user) {
   if (!user) {
@@ -38,26 +36,6 @@ async function register (req, res, next) {
       return res.status(400).json({ message: 'Username and password are required' })
     }
 
-    if (config.useFakeDb) {
-      const usernameExists = fallbackUsers.find(user => user.username === username)
-      if (usernameExists) {
-        return res.status(409).json({ message: 'Username already in use' })
-      }
-
-      const hashed = await bcrypt.hash(password, 10)
-      const newUser = {
-        _id: randomUUID(),
-        username,
-        password: hashed,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-
-      fallbackUsers.push(newUser)
-      const token = signToken(newUser._id)
-      return res.status(201).json({ token, user: normaliseUser(newUser) })
-    }
-
     const existing = await User.findOne({ username })
 
     if (existing) {
@@ -86,21 +64,6 @@ async function login (req, res, next) {
 
     if (!username || !password) {
       return res.status(400).json({ message: 'Username and password are required' })
-    }
-
-    if (config.useFakeDb) {
-      const user = fallbackUsers.find(item => item.username === username)
-      if (!user) {
-        return res.status(401).json({ message: 'Invalid credentials' })
-      }
-
-      const match = await bcrypt.compare(password, user.password)
-      if (!match) {
-        return res.status(401).json({ message: 'Invalid credentials' })
-      }
-
-      const token = signToken(user._id)
-      return res.json({ token, user: normaliseUser(user) })
     }
 
     const user = await User.findOne({ username })

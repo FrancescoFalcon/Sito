@@ -1,8 +1,5 @@
-const { randomUUID } = require('crypto')
 const Thread = require('../models/Thread')
-const config = require('../config/env')
 const slugify = require('../utils/slugify')
-const { fallbackThreads } = require('../services/fakeDatabase')
 
 function normaliseId (value) {
   if (!value) return null
@@ -65,17 +62,7 @@ function parseBoolean (value) {
   return Boolean(value)
 }
 
-function ensureFallbackThread (slug) {
-  const thread = fallbackThreads.find(item => item.slug === slug)
-  if (!thread) {
-    const error = new Error('Thread not found')
-    error.status = 404
-    throw error
-  }
-  return thread
-}
-
-function toggleSentiment (entity, userId, sentiment, useFallback) {
+function toggleSentiment (entity, userId, sentiment) {
   const likeKey = sentiment === 'like' ? 'likedBy' : 'dislikedBy'
   const oppositeKey = sentiment === 'like' ? 'dislikedBy' : 'likedBy'
   const identity = normaliseId(userId)
@@ -88,19 +75,13 @@ function toggleSentiment (entity, userId, sentiment, useFallback) {
   if (hasAlready) {
     entity[likeKey] = ownList.filter(id => normaliseId(id) !== identity)
   } else {
-    const valueToStore = useFallback ? identity : userId
-    entity[likeKey] = [...ownList, valueToStore]
+    entity[likeKey] = [...ownList, identity]
     entity[oppositeKey] = oppositeList.filter(id => normaliseId(id) !== identity)
   }
 }
 
 async function getThreads (req, res, next) {
   try {
-    if (config.useFakeDb) {
-      const sorted = [...fallbackThreads].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      return res.json(sorted.map(toPlainThread))
-    }
-
     const threads = await Thread.find().sort({ createdAt: -1 })
     res.json(threads.map(toPlainThread))
   } catch (error) {
@@ -120,26 +101,6 @@ async function createThread (req, res, next) {
     const slug = `${slugify(title)}-${Date.now()}`
     const authorName = req.user.username || 'Anonymous Seer'
     const rawAuthorId = req.user._id || req.user.id
-
-    if (config.useFakeDb) {
-      const now = new Date()
-      const newThread = {
-        _id: randomUUID(),
-        title,
-        slug,
-        author: authorName,
-        authorId: normaliseId(rawAuthorId),
-        content,
-        isSpoiler,
-        likedBy: [],
-        dislikedBy: [],
-        replies: [],
-        createdAt: now,
-        updatedAt: now
-      }
-      fallbackThreads.unshift(newThread)
-      return res.status(201).json(toPlainThread(newThread))
-    }
 
     const thread = await Thread.create({
       title,
@@ -168,24 +129,6 @@ async function addReply (req, res, next) {
     const authorName = req.user.username || 'Anonymous Seer'
     const rawAuthorId = req.user._id || req.user.id
 
-    if (config.useFakeDb) {
-      const thread = ensureFallbackThread(slug)
-      const now = new Date()
-      const reply = {
-        _id: randomUUID(),
-        author: authorName,
-        authorId: normaliseId(rawAuthorId),
-        content,
-        likedBy: [],
-        dislikedBy: [],
-        createdAt: now,
-        updatedAt: now
-      }
-      thread.replies.unshift(reply)
-      thread.updatedAt = now
-      return res.status(201).json(toPlainThread(thread))
-    }
-
     const thread = await Thread.findOne({ slug })
     if (!thread) {
       return res.status(404).json({ message: 'Thread not found' })
@@ -212,19 +155,12 @@ async function reactToThread (req, res, next) {
 
     const userId = req.user._id || req.user.id
 
-    if (config.useFakeDb) {
-      const thread = ensureFallbackThread(slug)
-      toggleSentiment(thread, userId, sentiment, true)
-      thread.updatedAt = new Date()
-      return res.json(toPlainThread(thread))
-    }
-
     const thread = await Thread.findOne({ slug })
     if (!thread) {
       return res.status(404).json({ message: 'Thread not found' })
     }
 
-    toggleSentiment(thread, userId, sentiment, false)
+    toggleSentiment(thread, userId, sentiment)
     thread.updatedAt = new Date()
     await thread.save()
 
@@ -245,19 +181,6 @@ async function reactToReply (req, res, next) {
 
     const userId = req.user._id || req.user.id
 
-    if (config.useFakeDb) {
-      const thread = ensureFallbackThread(slug)
-      const reply = thread.replies.find(item => item._id === replyId)
-      if (!reply) {
-        return res.status(404).json({ message: 'Reply not found' })
-      }
-
-      toggleSentiment(reply, userId, sentiment, true)
-      reply.updatedAt = new Date()
-      thread.updatedAt = new Date()
-      return res.json(toPlainThread(thread))
-    }
-
     const thread = await Thread.findOne({ slug })
     if (!thread) {
       return res.status(404).json({ message: 'Thread not found' })
@@ -268,7 +191,7 @@ async function reactToReply (req, res, next) {
       return res.status(404).json({ message: 'Reply not found' })
     }
 
-    toggleSentiment(reply, userId, sentiment, false)
+    toggleSentiment(reply, userId, sentiment)
     reply.updatedAt = new Date()
     thread.updatedAt = new Date()
     await thread.save()
