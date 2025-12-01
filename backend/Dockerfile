@@ -5,14 +5,14 @@ FROM node:18-alpine as frontend-build
 WORKDIR /app/frontend
 
 # Copiamo i file di dipendenze del frontend
-# Nota: il contesto di build è la cartella 'backend', quindi accediamo a 'frontend/' da lì
-COPY frontend/package*.json ./
+# Nota: il contesto è la root, quindi il path è 'backend/frontend/'
+COPY backend/frontend/package*.json ./
 
 # Installiamo le dipendenze del frontend
 RUN npm install
 
 # Copiamo tutto il codice sorgente del frontend
-COPY frontend/ .
+COPY backend/frontend/ .
 
 # Eseguiamo la build (crea la cartella dist)
 RUN npm run build
