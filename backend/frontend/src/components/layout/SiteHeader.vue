@@ -335,13 +335,13 @@ header::after {
   position: absolute;
   top: 0.85rem;
   right: 0.85rem;
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 999px;
   border: 1px solid rgba(236, 196, 94, 0.65);
   background: radial-gradient(circle at 30% 30%, rgba(236, 196, 94, 0.25), rgba(8, 12, 20, 0.95));
   color: #fff4d1;
-  font-size: 1.6rem;
+  font-size: 1.35rem;
   font-weight: 600;
   line-height: 1;
   padding: 0;

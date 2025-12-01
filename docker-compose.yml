@@ -8,16 +8,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    # Diciamo a Docker di leggere le variabili direttamente dal tuo file .env
+    # Diciamo a Docker di leggere le variabili direttamente dal file .env
     env_file:
       - ./backend/.env
     environment:
       - NODE_ENV=production
       # Sovrascriviamo CLIENT_ORIGIN per assicurarci che Docker locale funzioni
       - CLIENT_ORIGIN=http://localhost:3000,https://sitolotm.onrender.com
-      # NOTA: Se nel .env c'è MONGODB_URI di Atlas, l'app userà QUELLO (il DB vero).
-      # Se invece vuoi usare il DB locale isolato di Docker, scommenta la riga sotto:
-      # - MONGODB_URI=mongodb://mongo:27017/lotm_db
     depends_on:
       - mongo
     restart: always
