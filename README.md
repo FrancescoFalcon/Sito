@@ -1,127 +1,152 @@
-# Lord of the Mysteries (LOTM) Explorer
+# Lord of the Mysteries Explorer
 
-> **🚀 Live Demo:** [https://sitolotm.onrender.com](https://sitolotm.onrender.com)
+> **🚀 Live Demo:** [https://sito-l3xz.onrender.com](https://sito-l3xz.onrender.com)
 
-A comprehensive Single Page Application (SPA) designed to explore the intricate world of **Lord of the Mysteries**. This project leverages a modern tech stack to provide a rich, interactive experience for fans, featuring detailed lore, character dossiers, and community discussions.
+Un'applicazione web interattiva dedicata all'universo di "Lord of the Mysteries". Il progetto permette di esplorare i percorsi (Pathways), i personaggi, le divinità e include una sezione community per discussioni tra utenti.
 
-## 🛠️ Tech Stack
+## 🚀 Funzionalità
 
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Frontend** | Vue 3, Vite, Vue Router | Reactive UI, State Management (Composition API), Routing |
-| **Styling** | Bootstrap 5, LESS, CSS3 | Responsive Design, Custom Theming |
-| **Backend** | Node.js, Express.js | RESTful API, Static File Serving |
-| **Database** | MongoDB Atlas (Mongoose) | Data Persistence (Users, Threads, Lore) |
-| **Security** | JWT, Bcrypt, Helmet, CORS | Authentication, Password Hashing, API Security |
+- **Esplorazione Percorsi (Pathways):** Visualizzazione dettagliata delle sequenze, abilità e simbolismo.
+- **Database Personaggi:** Schede dettagliate dei personaggi con filtri per categoria.
+- **Community:** Sistema di thread e risposte per discutere del lore (richiede autenticazione).
+- **Autenticazione:** Registrazione e Login utenti tramite JWT.
+- **Design Responsivo:** Interfaccia moderna realizzata con Vue 3 e Bootstrap, tematizzata con Less.
 
-## 📂 Project Structure
+## 🛠 Tech Stack
 
-The project follows a monolithic structure where the backend serves the frontend static files in production.
+### Frontend
+- **Framework:** Vue 3 (Composition API)
+- **Build Tool:** Vite
+- **Routing:** Vue Router
+- **Styling:** Bootstrap 5, Less
+- **HTTP Client:** Axios
+
+### Backend
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB (con Mongoose ODM)
+- **Autenticazione:** JSON Web Tokens (JWT) & Bcrypt
+- **Sicurezza:** Helmet, CORS
+
+### DevOps & Deployment
+- **Container:** Docker (Multi-stage build)
+- **Orchestration:** Docker Compose
+- **Hosting:** Render
+
+## 📂 Struttura del Progetto
 
 ```
 sito/
-└── backend/                 # Root of the application
-    ├── src/
-    │   ├── config/          # Database & Env configuration
-    │   ├── controllers/     # API Logic (Auth, Threads, etc.)
-    │   ├── models/          # Mongoose Schemas
-    │   ├── routes/          # API Endpoints
-    │   └── server.js        # Entry point
-    └── frontend/            # Vue 3 Source Code
-        ├── src/
-        │   ├── components/  # Reusable Vue Components
-        │   ├── services/    # Axios API Client
-        │   ├── stores/      # Pinia Auth Store
-        │   └── views/       # Main Pages (Home, Paths, etc.)
-        └── dist/            # Compiled Production Build
+├── backend/                # Backend Express e root del build context
+│   ├── src/                # Codice sorgente backend
+│   │   ├── controllers/    # Logica di business
+│   │   ├── models/         # Schemi Mongoose
+│   │   ├── routes/         # Definizioni API
+│   │   ├── data/           # Dati statici per il seeding
+│   │   └── scripts/        # Script di utilità (es. seed.js)
+│   ├── frontend/           # Codice sorgente Frontend Vue
+│   │   ├── src/            # Componenti, Views, Stores
+│   │   └── dist/           # Build di produzione del frontend
+│   ├── Dockerfile          # Configurazione build Docker
+│   └── package.json        # Dipendenze Backend
+├── docker-compose.yml      # Orchestrazione locale con Docker
+└── render.yaml             # Configurazione Infrastructure as Code per Render
 ```
 
-## 🚀 Getting Started
+## ⚙️ Prerequisiti
 
-### Prerequisites
-- **Node.js** (v16 or higher)
-- **MongoDB Atlas** account (or local MongoDB instance)
+- **Node.js** (v18+)
+- **MongoDB** (Locale o Atlas)
+- **Docker Desktop** (Opzionale, per esecuzione containerizzata)
 
-### Installation & Setup
+## 🚀 Installazione e Avvio
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/FrancescoFalcon/Sito.git
-   cd Sito/backend
-   ```
+### Opzione A: Docker (Consigliata)
 
-2. **Install Dependencies**
-   ```bash
-   # Install backend dependencies
-   npm install
+Il metodo più semplice per avviare l'intero stack (Backend + Frontend + Database).
 
-   # Install frontend dependencies
-   cd frontend
-   npm install
-   ```
+1.  Assicurati di avere Docker avviato.
+2.  Crea un file `.env` in `backend/` (vedi sezione Variabili d'Ambiente).
+3.  Esegui il comando:
+    ```bash
+    docker-compose up --build
+    ```
+4.  L'applicazione sarà accessibile su `http://localhost:3000`.
 
-3. **Configuration**
-   - Create a `.env` file in the `backend` folder based on `.env.example`.
-   - Add your **MongoDB Connection String** and **JWT Secret**.
+### Opzione B: Sviluppo Manuale
 
-   ```env
-   PORT=10000
-   MONGODB_URI=mongodb+srv://<user>:<password>@cluster...
-   JWT_SECRET=your_secure_secret_key
-   NODE_ENV=development
-   ```
+Se vuoi sviluppare frontend e backend separatamente.
 
-### Running the Application
+#### 1. Setup Backend
 
-#### Option A: Development Mode (Recommended for coding)
-Run backend and frontend separately to enable Hot Module Replacement (HMR).
+```bash
+cd backend
+npm install
+```
 
-1. **Start Backend:**
-   ```bash
-   # In /backend
-   npm run dev
-   ```
-2. **Start Frontend:**
-   ```bash
-   # In /backend/frontend
-   npm run dev
-   ```
-   Access the site at `http://localhost:5173`.
+Crea il file `.env` e popola il database:
+```bash
+npm run seed
+```
 
-#### Option B: Production Mode (Simulate deployment)
-Build the frontend and let the backend serve it.
+Avvia il server:
+```bash
+npm run dev
+```
+Il backend girerà su `http://localhost:3000`.
 
-1. **Build Frontend:**
-   ```bash
-   # In /backend/frontend
-   npm run build
-   ```
-2. **Start Server:**
-   ```bash
-   # In /backend
-   npm start
-   ```
-   Access the site at `http://localhost:10000`.
+#### 2. Setup Frontend
 
-## ✨ Key Features
+In un nuovo terminale:
+```bash
+cd backend/frontend
+npm install
+npm run dev
+```
+Il frontend girerà su `http://localhost:5173` (o altra porta indicata da Vite).
 
-- **📖 Beyonder Paths**: Interactive grid of the 22 divine pathways, featuring detailed sequence pyramids and domain information.
-- **👥 Character Dossiers**: Comprehensive profiles for Tarot Club members, Gods, and key figures, complete with dynamic description panels.
-- **💬 Community Hub**: A fully functional forum system where users can:
-  - **Register & Login** (Secure JWT Authentication).
-  - **Create Threads** to discuss theories and lore.
-  - **Reply** to discussions.
-  - **React** (Like/Dislike) to threads and comments.
-- **🎨 Immersive UI**: Custom "Dark Fantasy" theme with dynamic backgrounds that change based on the section (Home, Paths, Characters).
+## 🔑 Variabili d'Ambiente
 
-## 🛡️ Security & Best Practices
+Crea un file `.env` nella cartella `backend/` con il seguente contenuto:
 
-- **No "Fake DB"**: The project runs exclusively on a real MongoDB database.
-- **Clean Architecture**: Separation of concerns between Controllers, Services, and Views.
-- **Code Quality**: Linting with ESLint (Standard Style) to ensure code consistency.
-- **Secure Auth**: Passwords are never stored in plain text (bcrypt) and sessions are managed via stateless JWTs.
+```dotenv
+PORT=3000
+# Usa la stringa di connessione locale o quella di Atlas
+MONGODB_URI=mongodb://localhost:27017/lotm
+# URL del frontend (per CORS)
+CLIENT_ORIGIN=http://localhost:5173,http://localhost:3000
+# Segreto per firmare i token JWT
+JWT_SECRET=tua-chiave-segreta-super-sicura
+# Imposta a 'production' per servire i file statici del frontend
+NODE_ENV=development
+```
 
-## 📜 License
+## 💾 Seeding del Database
 
-Educational project inspired by *Lord of the Mysteries* by Cuttlefish That Loves Diving.
-Created for academic purposes.
+Per popolare il database con i dati iniziali (Percorsi, Personaggi, Thread di esempio):
+
+```bash
+cd backend
+npm run seed
+```
+*Nota: Questo comando cancella i dati esistenti nelle collezioni interessate.*
+
+## 🌍 Deployment su Render
+
+Il progetto è configurato per il deployment automatico su Render tramite Docker.
+
+1.  Collega il repository GitHub a Render.
+2.  Render rileverà il file `render.yaml` o il `Dockerfile`.
+3.  Imposta le variabili d'ambiente nella dashboard di Render:
+    - `MONGODB_URI`: La tua stringa di connessione Atlas (es. `mongodb+srv://user:pass@cluster.mongodb.net/lotm?appName=Cluster0`). **Importante:** specifica il nome del database (es. `/lotm`).
+    - `JWT_SECRET`: Una stringa casuale sicura.
+    - `CLIENT_ORIGIN`: L'URL del tuo sito su Render (es. `https://tuo-sito.onrender.com`).
+    - `NODE_ENV`: `production`.
+
+## 📡 API Endpoints Principali
+
+- `GET /api/paths` - Lista di tutti i percorsi.
+- `GET /api/characters` - Lista dei personaggi.
+- `GET /api/community/threads` - Lista delle discussioni.
+- `POST /api/auth/login` - Login utente.
+- `POST /api/auth/register` - Registrazione utente.
