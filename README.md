@@ -12,26 +12,23 @@ Un'applicazione web interattiva dedicata all'universo di "Lord of the Mysteries"
 - **Autenticazione:** Registrazione e Login utenti tramite JWT.
 - **Design Responsivo:** Interfaccia moderna realizzata con Vue 3 e Bootstrap, tematizzata con Less.
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack e Scelte Progettuali
 
 ### Frontend
-- **Framework:** Vue 3 (Composition API)
-- **Build Tool:** Vite
-- **Routing:** Vue Router
-- **Styling:** Bootstrap 5, Less
-- **HTTP Client:** Axios
+- **Vue 3 (Composition API):** Scelto per la sua reattività performante e la modularità del codice. La Composition API permette una migliore organizzazione della logica rispetto alla Options API, facilitando la manutenzione di componenti complessi come le schede dei personaggi.
+- **Vite:** Utilizzato come build tool per la sua velocità estrema e l'Hot Module Replacement (HMR) istantaneo, che migliora drasticamente l'esperienza di sviluppo rispetto a Webpack.
+- **Bootstrap 5 & Less:** Bootstrap fornisce una griglia responsiva solida e componenti pronti all'uso, mentre Less permette una personalizzazione avanzata (variabili, mixin) per ottenere l'estetica "Dark Fantasy" specifica del progetto senza dover riscrivere tutto il CSS da zero.
+- **Axios:** Client HTTP basato su promise, scelto per la sua semplicità nella gestione delle richieste API e degli interceptor per l'autenticazione JWT.
 
 ### Backend
-- **Runtime:** Node.js
-- **Framework:** Express.js
-- **Database:** MongoDB (con Mongoose ODM)
-- **Autenticazione:** JSON Web Tokens (JWT) & Bcrypt
-- **Sicurezza:** Helmet, CORS
+- **Node.js & Express:** Un'architettura non bloccante e orientata agli eventi, ideale per gestire le richieste concorrenti di una Single Page Application. Express offre un framework minimalista ma robusto per strutturare le API RESTful in modo pulito.
+- **MongoDB & Mongoose:** Database NoSQL scelto per la sua flessibilità nella gestione di dati non strutturati (come i dettagli complessi del lore) e per la sua natura JSON-like, che si mappa perfettamente sugli oggetti JavaScript del backend.
+- **JWT (JSON Web Tokens) & Bcrypt:** L'autenticazione stateless tramite JWT garantisce scalabilità e sicurezza senza la necessità di gestire sessioni lato server. Bcrypt assicura che le password siano hashate in modo sicuro prima di essere salvate.
+- **Helmet & CORS:** Middleware essenziali per la sicurezza, proteggono l'applicazione impostando header HTTP appropriati e gestendo le origini consentite.
 
 ### DevOps & Deployment
-- **Container:** Docker (Multi-stage build)
-- **Orchestration:** Docker Compose
-- **Hosting:** Render
+- **Docker:** Garantisce la coerenza tra l'ambiente di sviluppo e quello di produzione, eliminando i problemi di compatibilità ("funziona sulla mia macchina"). L'uso di multi-stage builds ottimizza le dimensioni dell'immagine finale.
+- **Render:** Piattaforma scelta per la sua integrazione nativa con GitHub e il supporto diretto ai container Docker, semplificando il processo di CI/CD e deployment automatico.
 
 ## 📂 Struttura del Progetto
 
