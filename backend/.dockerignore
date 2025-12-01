@@ -1,0 +1,14 @@
+# Ignora node_modules ovunque (root e sottocartelle)
+**/node_modules
+node_modules
+frontend/node_modules
+
+# Log e file di sistema
+npm-debug.log
+.git
+.DS_Store
+
+# File di ambiente (le variabili le passiamo da docker-compose)
+.env
+.env.local
+.env.production
