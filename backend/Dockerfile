@@ -1,5 +1,5 @@
 # --- Stage 1: Build del Frontend ---
-FROM node:18-alpine as frontend-build
+FROM node:18-slim as frontend-build
 
 # Impostiamo la directory di lavoro per il frontend
 WORKDIR /app/frontend
@@ -18,7 +18,7 @@ COPY backend/frontend/ .
 RUN npm run build
 
 # --- Stage 2: Setup del Backend ---
-FROM node:18-alpine
+FROM node:18-slim
 
 # Impostiamo la directory di lavoro per il backend
 WORKDIR /app/backend
