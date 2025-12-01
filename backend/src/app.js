@@ -20,7 +20,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api', routes)
 
 if (process.env.NODE_ENV === 'production') {
-  const distPath = path.join(__dirname, '..', 'frontend', 'dist')
+  const distPath = path.join(__dirname, '..', '..', 'frontend', 'dist')
 
   app.use(express.static(distPath))
 
