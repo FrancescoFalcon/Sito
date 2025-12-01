@@ -9,10 +9,7 @@ async function connectToDatabase () {
   mongoose.set('strictQuery', true)
 
   try {
-    // Aggiungiamo opzioni per migliorare la stabilità della connessione in container
-    await mongoose.connect(config.mongoUri, {
-      family: 4 // Forza l'uso di IPv4 per evitare problemi DNS con SRV records
-    })
+    await mongoose.connect(config.mongoUri)
     isConnected = true
     console.log('MongoDB connected successfully')
 
