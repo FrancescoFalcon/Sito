@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   # Servizio Applicazione (Backend + Frontend servito staticamente)
   app:
     build: 
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
       - "3000:3000"
     # Diciamo a Docker di leggere le variabili direttamente dal file .env
@@ -14,7 +12,7 @@ services:
     environment:
       - NODE_ENV=production
       # Sovrascriviamo CLIENT_ORIGIN per assicurarci che Docker locale funzioni
-      - CLIENT_ORIGIN=http://localhost:3000,https://sitolotm.onrender.com
+      - CLIENT_ORIGIN=http://localhost:3000,https://sito-l3xz.onrender.com
     depends_on:
       - mongo
     restart: always
