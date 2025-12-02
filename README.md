@@ -64,9 +64,9 @@ Il metodo più semplice per avviare l'intero stack (Backend + Frontend + Databas
 
 1.  Assicurati di avere Docker avviato.
 2.  Crea un file `.env` in `backend/` (vedi sezione Variabili d'Ambiente).
-3.  Esegui il comando:
+3.  Esegui il comando dalla root `sito/`:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 4.  L'applicazione sarà accessibile su `http://localhost:3000`.
 
@@ -104,18 +104,26 @@ Il frontend girerà su `http://localhost:5173` (o altra porta indicata da Vite).
 
 ## 🔑 Variabili d'Ambiente
 
-Crea un file `.env` nella cartella `backend/` con il seguente contenuto:
+Crea un file `.env` nella cartella `backend/` con i valori base e scegli la stringa `MONGODB_URI` in base all'ambiente:
 
 ```dotenv
 PORT=3000
-# Usa la stringa di connessione locale o quella di Atlas
 MONGODB_URI=mongodb://localhost:27017/lotm
-# URL del frontend (per CORS)
 CLIENT_ORIGIN=http://localhost:5173,http://localhost:3000
-# Segreto per firmare i token JWT
 JWT_SECRET=tua-chiave-segreta-super-sicura
-# Imposta a 'production' per servire i file statici del frontend
 NODE_ENV=development
+```
+
+Se avvii tutto tramite Docker (frontend servito dallo stesso container) imposta invece:
+
+```dotenv
+CLIENT_ORIGIN=http://localhost:3000,https://sito-l3xz.onrender.com
+```
+
+Se usi MongoDB Atlas sostituisci la riga `MONGODB_URI` con la stringa del tuo cluster assicurandoti di specificare il nome del database:
+
+```dotenv
+MONGODB_URI=mongodb+srv://<utente>:<password>@cluster0.wsoop9p.mongodb.net/lotm?retryWrites=true&w=majority&appName=Cluster0
 ```
 
 ## 💾 Seeding del Database
