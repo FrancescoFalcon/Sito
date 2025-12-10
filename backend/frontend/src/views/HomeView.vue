@@ -303,7 +303,8 @@ const reasonsToRead = [
 
 .plot-card {
   padding: clamp(2.5rem, 4vw, 3rem);
-  background: linear-gradient(150deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.78));
+  background: linear-gradient(150deg, #0f172a, #1e293b);
+  backdrop-filter: none;
   display: grid;
   gap: 1.6rem;
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
@@ -379,7 +380,8 @@ const reasonsToRead = [
   gap: 1rem;
   align-items: start;
   padding: clamp(1.4rem, 2.5vw, 1.8rem);
-  background: linear-gradient(165deg, rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.72));
+  background: linear-gradient(165deg, #111827, #0d121f);
+  backdrop-filter: none;
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
               border-color 0.45s ease,
               box-shadow 0.3s ease;
