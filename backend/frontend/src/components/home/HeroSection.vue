@@ -19,10 +19,10 @@
           Lord of the Mysteries
         </p>
         <h1 class="hero-title">
-          Quando il destino viene riscritto nel grigio crepuscolo
+          When destiny is rewritten above the gray fog
         </h1>
         <p class="hero-lead">
-          Vivi Backlund come un presagio: nebbia, rituali e giuramenti sussurrati nella Nebbia Grigia.
+          Dive into a world where mysticism meets mystery. Follow Klein Moretti as he unravels secrets, navigates hidden societies, and confronts cosmic forces in a richly woven narrative that blends detective noir with ritual magic.
         </p>
       </div>
       <div class="hero-actions">

@@ -9,17 +9,17 @@
               <p class="kicker">
                 Plot Overview
               </p>
-              <h2>Navigate the hidden currents of Lord of the Mysteries</h2>
+              <h2>Navigate the world of Lord of the Mysteries</h2>
               <p class="lead">
-                Follow Klein Moretti&apos;s resurrection as the Fool and trace how a single séance ripples into conspiracies that tug on gods, empires, and the very laws of reality.
+                Klein Moretti becomes a Beyonder after finding a strange diary and accidentally ascends as “The Fool.” He forms the Tarot Club while investigating cults, secrets, and supernatural dangers that threaten his life and sanity.
               </p>
             </header>
             <div class="plot-body">
               <p>
-                Klein&apos;s death launches him into the Sea of Fog where the enigmatic Mr. Fool crowns him master of a mystic séance. Back in the waking world, he investigates occult murders, decrypts ancient diaries, and recruits allies through tarot personas.
+                Traveling widely, Klein uncovers ancient truths, manipulates factions through the gray fog, strengthens the Tarot Club, and confronts powerful Beyonders while inching toward godhood.
               </p>
               <p>
-                Each revelation uncovers long-buried schemes of Outer Gods, secret organizations, and Sequence-holders ready to rewrite fate. The plot escalates from smoky alleyways to cosmic thrones without losing its detective heartbeat.
+                Facing Outer Gods and collapsing realities, Klein uses cunning, sacrifice, and alliances to protect the world, ultimately becoming a new deity to stabilize existence.
               </p>
             </div>
           </article>
@@ -113,12 +113,12 @@ const plotBeats = [
   {
     icon: '⚙️',
     title: 'Political shadow plays',
-    description: 'Backlund’s factions—royalists, reformers, and foreign powers—weaponize Beyonder abilities to tilt economies and elections.'
+    description: 'Shadow plays are the covert power struggles between governments, churches, and secret organizations. They involve hidden agendas, quiet deals, and manipulations that shape events behind the scenes, adding intrigue and tension without revealing specific plot developments.'
   },
   {
     icon: '🜂',
     title: 'Cosmic revelations',
-    description: 'Outer Gods awaken, ancient Sequences return, and the Sea of Fog demands sacrifices that reshape identity and destiny alike.'
+    description: 'Cosmic revelations are the story’s big, mind-expanding moments that unveil the hidden laws, history, and forces shaping the universe. They deepen the mystery and widen the world’s scale without giving away specific events.'
   }
 ]
 
@@ -126,29 +126,25 @@ const bookCycles = [
   {
     range: 'Books 1 – 3',
     title: 'Awakening the Fool',
-    focus: 'Tingen and Backlund mysteries introduce the tarot table, secret societies, and the foundations of the Sequence system.',
-    takeaway: 'Detective noir tension meets ritual magic as Klein learns to survive while still mortal.',
+    focus: 'Klein becomes a Beyonder, creates the Tarot Club, and solves escalating mysteries in a city full of hidden dangers. The foundation of the world’s powers, lore, and factions is gradually revealed.',
     accent: 'rgba(236, 196, 94, 0.18)'
   },
   {
     range: 'Books 4 – 5',
-    title: 'Navigating the High Seas',
-    focus: 'An expedition into the Sunya Sea reveals pirate queens, Lost Valleys, and the mythic history of the Second Epoch.',
-    takeaway: 'The world map expands and the stakes climb from city intrigue to continent-spanning cataclysms.',
+    title: 'Expansion & Secrets',
+    focus: 'The world broadens as Klein travels, encounters new cultures, and uncovers buried truths. Larger forces and cosmic hints begin shaping his path.',
     accent: 'rgba(56, 189, 248, 0.16)'
   },
   {
     range: 'Books 6 – 8',
-    title: 'Ascension and Aftermath',
-    focus: 'Klein confronts godhood, bargains with ancient beings, and struggles to retain his humanity inside the Sea of Fog.',
-    takeaway: 'Mystery threads tighten into a finale that balances inevitability with clever loopholes.',
+    title: 'Rising Toward the Unseen',
+    focus: 'Stakes grow global and metaphysical as conflicts between factions, gods, and ancient entities intensify. Klein’s influence and responsibilities rise sharply.',
     accent: 'rgba(129, 140, 248, 0.18)'
   },
   {
     range: 'Circle of Inevitability',
     title: 'Legacy of the Fool',
-    focus: 'A new protagonist inherits unresolved prophecies while charting fresh Sequences and regional cultures.',
-    takeaway: 'The sequel explores how Klein’s choices echo through new generations and shifting power structures.',
+    focus: 'A new protagonist navigates a transformed world and its lingering enigmas. The series deepens its cosmic threads while forging a fresh narrative path.',
     accent: 'rgba(244, 114, 182, 0.15)'
   }
 ]
