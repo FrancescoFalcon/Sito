@@ -11,12 +11,12 @@
               </p>
               <h2>Navigate the world of Lord of the Mysteries</h2>
               <p class="lead">
-                Klein Moretti becomes a Beyonder after finding a strange diary and accidentally ascends as “The Fool.” He forms the Tarot Club while investigating cults, secrets, and supernatural dangers that threaten his life and sanity.
+                Klein Moretti becomes a Beyonder after discovering a mysterious diary that drags him into the hidden world of potions, rituals, and occult politics. Accidentally ascending as “The Fool,” he presides over the Tarot Club, guiding strangers who rely on his enigmatic persona. While solving supernatural cases and evading cults, he struggles to remain sane and understand the true forces at play.
               </p>
             </header>
             <div class="plot-body">
               <p>
-                Traveling widely, Klein uncovers ancient truths, manipulates factions through the gray fog, strengthens the Tarot Club, and confronts powerful Beyonders while inching toward godhood.
+                Klein travels across dangerous regions, gathering knowledge of ancient civilizations, sealed artifacts, and the origins of Beyonder paths. From within the gray fog, he subtly influences factions, ensures the growth of the Tarot Club, and balances conflicting powers. Each step deepens his understanding of the cosmos as he steadily climbs toward a higher, godlike existence.
               </p>
               <p>
                 Facing Outer Gods and collapsing realities, Klein uses cunning, sacrifice, and alliances to protect the world, ultimately becoming a new deity to stabilize existence.
